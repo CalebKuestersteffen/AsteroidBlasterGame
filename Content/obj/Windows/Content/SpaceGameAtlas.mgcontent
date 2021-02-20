@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlaster/AsteroidBlaster/Content/SpaceGameAtlas.png</SourceFile>
-  <SourceTime>2021-02-04T22:04:25.814143-06:00</SourceTime>
-  <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlaster/AsteroidBlaster/Content/bin/Windows/Content/SpaceGameAtlas.xnb</DestFile>
-  <DestTime>2021-02-05T02:05:40.421435-06:00</DestTime>
+  <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/SpaceGameAtlas.png</SourceFile>
+  <SourceTime>2021-02-19T20:20:16.9046688-06:00</SourceTime>
+  <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/bin/Windows/Content/SpaceGameAtlas.xnb</DestFile>
+  <DestTime>2021-02-19T20:24:30.2092252-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

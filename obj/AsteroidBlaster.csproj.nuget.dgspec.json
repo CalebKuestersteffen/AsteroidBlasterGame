@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlaster\\AsteroidBlaster\\AsteroidBlaster.csproj": {}
+    "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlaster\\AsteroidBlaster\\AsteroidBlaster.csproj": {
+    "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlaster\\AsteroidBlaster\\AsteroidBlaster.csproj",
+        "projectUniqueName": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj",
         "projectName": "AsteroidBlaster",
-        "projectPath": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlaster\\AsteroidBlaster\\AsteroidBlaster.csproj",
+        "projectPath": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj",
         "packagesPath": "C:\\Users\\MyLifeSavings\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlaster\\AsteroidBlaster\\obj\\",
+        "outputPath": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
