@@ -1,0 +1,46 @@
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\Laser Charge.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\Laser Shooting.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\Ship Explosion.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\arial.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\Explosion.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\HitBoxDebug.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\LaserCharge.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\LaserShooting.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\ShipExplosion.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\SpaceGameAtlas.xnb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.exe
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.deps.json
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.runtimeconfig.json
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.runtimeconfig.dev.json
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\AsteroidBlaster.pdb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Microsoft.VisualBasic.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.Direct2D1.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.Direct3D11.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.Direct3D9.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.DXGI.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.Mathematics.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.MediaFoundation.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.XAudio2.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\SharpDX.XInput.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\debian-x64\native\libuv.so
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\fedora-x64\native\libuv.so
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\opensuse-x64\native\libuv.so
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\osx\native\libuv.dylib
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\rhel-x64\native\libuv.so
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\win7-arm\native\libuv.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\libuv.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\runtimes\win7-x86\native\libuv.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.csprojAssemblyReference.cache
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.AssemblyInfoInputs.cache
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.AssemblyInfo.cs
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.csproj.CoreCompileInputs.cache
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.csproj.CopyComplete
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.dll
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.pdb
+C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.genruntimeconfig.cache

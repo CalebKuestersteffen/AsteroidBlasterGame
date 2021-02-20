@@ -4,13 +4,13 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/arial.spritefont</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/Explosion.wav</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/HitBoxDebug.png</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/LaserCharge.wav</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/LaserShooting.wav</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/ShipExplosion.wav</File>
-    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/SpaceGameAtlas.png</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/arial.spritefont</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/Explosion.wav</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/HitBoxDebug.png</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/LaserCharge.wav</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/LaserShooting.wav</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/ShipExplosion.wav</File>
+    <File>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/SpaceGameAtlas.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
