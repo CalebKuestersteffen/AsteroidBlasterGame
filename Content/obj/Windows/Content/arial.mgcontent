@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlaster/AsteroidBlaster/Content/arial.spritefont</SourceFile>
+  <SourceTime>2021-02-04T13:44:53.1220128-06:00</SourceTime>
+  <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlaster/AsteroidBlaster/Content/bin/Windows/Content/arial.xnb</DestFile>
+  <DestTime>2021-02-05T02:05:40.3984137-06:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2020-08-10T16:17:54-05:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
