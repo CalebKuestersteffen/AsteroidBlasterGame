@@ -7,7 +7,8 @@ namespace AsteroidBlaster
         [STAThread]
         static void Main()
         {
-            using (var game = new AsteroidBlaster())
+            //using (var game = new AsteroidBlaster())
+            using (var game = new Game1())
                 game.Run();
         }
     }

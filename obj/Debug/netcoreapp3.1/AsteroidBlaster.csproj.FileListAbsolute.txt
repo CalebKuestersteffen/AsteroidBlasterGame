@@ -44,3 +44,6 @@ C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\
 C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.dll
 C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.pdb
 C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\AsteroidBlaster.genruntimeconfig.cache
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\background.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\blank.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\gradient.xnb

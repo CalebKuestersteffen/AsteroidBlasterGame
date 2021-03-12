@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/HitBoxDebug.png</SourceFile>
-  <SourceTime>2021-02-19T20:29:26.9333285-06:00</SourceTime>
-  <DestFile>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/bin/Windows/Content/HitBoxDebug.xnb</DestFile>
-  <DestTime>2021-02-19T20:29:31.7603433-06:00</DestTime>
+  <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/HitBoxDebug.png</SourceFile>
+  <SourceTime>2021-02-19T20:31:19.2579276-06:00</SourceTime>
+  <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/bin/Windows/Content/HitBoxDebug.xnb</DestFile>
+  <DestTime>2021-02-28T19:48:19.720138-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -1,3 +1,12 @@
 ﻿All sprites and sounds were made by myself (Caleb Kuestersteffen) for personal use in CIS 580 projects
 
 Arial font is from Microsoft Windows 10
+
+
+
+
+All assets from the MonoGame port of the XNA Game State Management Sample, available at:
+
+https://github.com/tomizechsterson/game-state-management-monogame
+
+and relased under the MIT License

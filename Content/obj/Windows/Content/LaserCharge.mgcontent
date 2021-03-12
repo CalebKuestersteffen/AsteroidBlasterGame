@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/LaserCharge.wav</SourceFile>
-  <SourceTime>2021-02-19T20:29:26.9343295-06:00</SourceTime>
-  <DestFile>C:/Users/MyLifeSavings/Source/Repos/AsteroidBlasterGame/Content/bin/Windows/Content/LaserCharge.xnb</DestFile>
-  <DestTime>2021-02-19T20:29:31.8714441-06:00</DestTime>
+  <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/LaserCharge.wav</SourceFile>
+  <SourceTime>2021-02-19T20:31:19.258928-06:00</SourceTime>
+  <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/bin/Windows/Content/LaserCharge.xnb</DestFile>
+  <DestTime>2021-02-28T19:48:19.8422477-06:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

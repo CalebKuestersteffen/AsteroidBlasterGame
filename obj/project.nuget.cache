@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bLo6Z5/vbsLJfpfAxwcDTCA6HPJypjaVHFsak1xXmAghlTHuMmCfbeD1n7bkc0UTrgnAQszQy4qbNLmOFxtOew==",
+  "dgSpecHash": "H4lelAB0ekkXP9aHXYUVWIMV5OgjbtOrjmjkI3ECEdRw/4ozpC41fJPHJ7cMLX7yARaJcRMXTibsdZlqVpccxA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MyLifeSavings\\Source\\Repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj",
+  "projectFilePath": "C:\\Users\\MyLifeSavings\\source\\repos\\AsteroidBlasterGame\\AsteroidBlaster.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MyLifeSavings\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
