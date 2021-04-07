@@ -1,7 +1,8 @@
-﻿All sprites and sounds were made by myself (Caleb Kuestersteffen) for personal use in CIS 580 projects
+﻿All sprites and sounds that are not creditted below were made by myself (Caleb Kuestersteffen) for personal use in CIS 580 projects
+
+
 
 Arial font is from Microsoft Windows 10
-
 
 
 
@@ -10,3 +11,27 @@ All assets from the MonoGame port of the XNA Game State Management Sample, avail
 https://github.com/tomizechsterson/game-state-management-monogame
 
 and relased under the MIT License
+
+
+
+Background by Miontomaru Magnussonand, available at:
+
+https://miontomaru.itch.io/nebulous-space-parallax-background
+
+does not appear to be released under a license but author says "You can use these for whatever you like. Credit is not necessary, but if you create something using them I'd be happy to see my work represented."
+
+
+
+Background music by Zen_Man, available at:
+
+https://pixabay.com/music/ambient-modular-ambient-03-791/
+
+and released under Pixabay License
+
+
+
+Content/Explosion.png & Content/Smoke.png- provided by the XNA project samples under the Microsoft Permissive License (https://github.com/CartBlanche/MonoGame-Samples)
+
+
+
+Content/drop.png, Content/circle.png, and Content/particle.png created by Nathan Bean for this tutorial and released into the public domain.

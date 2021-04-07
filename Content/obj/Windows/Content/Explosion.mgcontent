@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/Explosion.wav</SourceFile>
   <SourceTime>2021-02-19T20:31:19.2579276-06:00</SourceTime>
   <DestFile>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/bin/Windows/Content/Explosion.xnb</DestFile>
-  <DestTime>2021-02-28T19:48:19.6971164-06:00</DestTime>
+  <DestTime>2021-04-07T17:27:26.3269327-05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

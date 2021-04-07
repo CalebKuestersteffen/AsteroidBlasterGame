@@ -47,3 +47,10 @@ C:\Users\MyLifeSavings\Source\Repos\AsteroidBlasterGame\obj\Debug\netcoreapp3.1\
 C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\background.xnb
 C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\blank.xnb
 C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\gradient.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\NebulousSpace_2560x1440.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\circle.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\particle.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\smoke.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\BackgroundMusic.wma
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\BackgroundMusic.xnb
+C:\Users\MyLifeSavings\source\repos\AsteroidBlasterGame\bin\Debug\netcoreapp3.1\Content\explosionTexture.xnb

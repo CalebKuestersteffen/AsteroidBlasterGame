@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using AsteroidBlaster.StateManagement;
 
 namespace AsteroidBlaster.Screens
@@ -12,10 +13,17 @@ namespace AsteroidBlaster.Screens
     // This screen implements the actual game logic. It is just a
     // placeholder to get the idea across: you'll probably want to
     // put some more interesting gameplay in here!
-    public class GameplayScreen : GameScreen
+    public class GameplayScreen : GameScreen, IParticleEmitter
     {
         private ContentManager _content;
         private SpriteBatch spriteBatch;
+
+        private Texture2D background;
+        private Song backgroundMusic;
+
+        private ExplosionParticleSystem _shipExplosion;
+        private FireworkParticleSystem _asteroidDestruction;
+        private TrailingParticleSystem _shipTrail;
 
         private AsteroidSprite[] asteroids;
         private ShipSprite ship;
@@ -24,7 +32,7 @@ namespace AsteroidBlaster.Screens
         private int livesLeft;
         private float timeSurvived = 0;
         //private int asteroidsShot;
-        private bool destructionRendered = false;
+        //private bool destructionRendered = false;
         private SoundEffect asteroidDestruction;
         private SoundEffect shipDestruction;
 
@@ -32,6 +40,9 @@ namespace AsteroidBlaster.Screens
 
         private float _pauseAlpha;
         private readonly InputAction _pauseAction;
+
+        public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
 
         public GameplayScreen()
         {
@@ -52,16 +63,16 @@ namespace AsteroidBlaster.Screens
             // generate asteroids on the top half of the screen
             asteroids = new AsteroidSprite[]
             {
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
-                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
+                new AsteroidSprite(ScreenManager.Game, new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width, ((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height/2) - 300)),
             };
 
 
@@ -77,9 +88,11 @@ namespace AsteroidBlaster.Screens
             foreach (var asteroid in asteroids) asteroid.LoadContent(_content);
             ship.LoadContent(_content);
             laser.LoadContent(_content);
+            background = _content.Load<Texture2D>("NebulousSpace_2560x1440");
             asteroidDestruction = _content.Load<SoundEffect>("Explosion");
             shipDestruction = _content.Load<SoundEffect>("ShipExplosion");
             spriteFont = _content.Load<SpriteFont>("arial");
+            backgroundMusic = _content.Load<Song>("BackgroundMusic");
 
             // A real game would probably have more content than ScreenManager.Game sample, so
             // it would take longer to load. We simulate that by delaying for a
@@ -90,6 +103,18 @@ namespace AsteroidBlaster.Screens
             // timing mechanism that we have just finished a very long frame, and that
             // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
+
+            _shipExplosion = new ExplosionParticleSystem(ScreenManager.Game, 20);
+            ScreenManager.Game.Components.Add(_shipExplosion);
+
+            _asteroidDestruction = new FireworkParticleSystem(ScreenManager.Game, 20);
+            ScreenManager.Game.Components.Add(_asteroidDestruction);
+
+            _shipTrail = new TrailingParticleSystem(ScreenManager.Game, this);
+            ScreenManager.Game.Components.Add(_shipTrail);
+
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
         }
 
 
@@ -142,25 +167,33 @@ namespace AsteroidBlaster.Screens
                             if (livesLeft == 0)
                             {
                                 shipDestruction.Play();
+                                _shipExplosion.PlaceExplosion(ship.Position);
                                 ship.Color = Color.White;
                                 ship.Destroyed = true;
                                 ship.Update(gameTime);
-                                if (ship.Destroyed == true)
 
-                                ScreenManager.AddScreen(new GameOverMenuScreen(), ControllingPlayer);
+                                if (ship.Destroyed == true) ScreenManager.AddScreen(new GameOverMenuScreen(), ControllingPlayer);
+
+
+                                ScreenManager.Game.Components.Remove(_shipTrail);
                             }
                             else
                             {
                                 asteroidDestruction.Play();
+                                _asteroidDestruction.PlaceFirework(asteroid.Position);
                             }
                         }
                         else if (!asteroid.Hit && asteroid.Bounds.CollidesWith(laser.Bounds))
                         {
                             asteroidDestruction.Play();
+                            _asteroidDestruction.PlaceFirework(asteroid.Position);
                             asteroid.Hit = true;
                             ship.LaserFired = false;
                         }
                     }
+
+                    Velocity = ship.Position - Position;
+                    Position = ship.Position;
                 }
                 #endregion
 
@@ -205,10 +238,23 @@ namespace AsteroidBlaster.Screens
             #region Rendering while player lives
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);
 
+
+            // Calculate Offset Vector for Background
+            float playerX = ship.Position.X;//MathHelper.Clamp(ship.Position.X, 300, 2560);
+            float playerY = ship.Position.Y;//MathHelper.Clamp(ship.Position.Y, 300, 1440);
+
+            float offsetX = (-800 - playerX);
+            float offsetY = (-300 - playerY);
+
+            Matrix transform = Matrix.CreateTranslation(offsetX * 1.0f, offsetY * 1.0f, 0);
+
             // TODO: Add your drawing code here
+            spriteBatch.Begin(transformMatrix: transform);
+            //spriteBatch.Begin();
+            spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             spriteBatch.Begin();
-
-
             foreach (var asteroid in asteroids)
             {
                 asteroid.Draw(gameTime, spriteBatch);

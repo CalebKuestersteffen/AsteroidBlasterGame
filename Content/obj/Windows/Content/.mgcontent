@@ -6,16 +6,28 @@
   <SourceFiles>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/arial.spritefont</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/background.jpg</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/BackgroundMusic.mp3</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/blank.png</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/circle.png</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/Explosion.wav</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/explosionTexture.png</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/gradient.png</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/HitBoxDebug.png</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/LaserCharge.wav</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/LaserShooting.wav</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/NebulousSpace_2560x1440.png</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/particle.png</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/ShipExplosion.wav</File>
+    <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/smoke.bmp</File>
     <File>C:/Users/MyLifeSavings/source/repos/AsteroidBlasterGame/Content/SpaceGameAtlas.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

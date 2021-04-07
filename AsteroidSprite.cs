@@ -19,18 +19,24 @@ namespace AsteroidBlaster
         System.Random rand = new System.Random();
 
         private int animationFrame = 1;
-        private Vector2 velocity;
         private Vector2 position;
+        private Vector2 velocity;
         private Texture2D texture;
         private Texture2D hitboxDebug;
         private BoundingCircle bounds;
-        private short driftSpeed = 50;
+        private short driftSpeed = 75;
         private float asteroidSpeed = 175f;
         private short delay = 0;
         private short delayMax = 1;
         private short respawnTimer = 0;
         private short respawnDelay = 200;
+        private float driftDirection = 0;
         private Game game;
+
+        public Vector2 Position
+        {
+            get { return position;  }
+        }
 
         /// <summary>
         /// Tracks if the asteroid has been hit
@@ -51,6 +57,7 @@ namespace AsteroidBlaster
             this.game = game;
             this.position = position;
             this.bounds = new BoundingCircle(position + new Vector2(20, 20), 20);
+            driftDirection = RandomHelper.NextFloat(-1,1);
         }
 
         /// <summary>
@@ -72,18 +79,25 @@ namespace AsteroidBlaster
             var viewport = game.GraphicsDevice.Viewport;
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            velocity = new Vector2(-driftSpeed, asteroidSpeed);
+            velocity = new Vector2(-driftSpeed*driftDirection, asteroidSpeed);
             delay = 0;
 
             position += velocity * t;
 
             if (position.Y > viewport.Height)
             {
+                driftDirection = RandomHelper.NextFloat(-1, 1);
                 position.Y = 0;
             }
             if (position.X < 0)
             {
+                driftDirection = RandomHelper.NextFloat(-1, 1);
                 position.X = viewport.Width;
+            }
+            if (position.X > viewport.Width)
+            {
+                driftDirection = RandomHelper.NextFloat(-1, 1);
+                position.X = 0;
             }
 
             bounds.Center = position + new Vector2(20, 20);
@@ -94,7 +108,7 @@ namespace AsteroidBlaster
                 if (respawnTimer > respawnDelay)
                 {
                     Hit = false;
-                    position = (new Vector2((float)rand.NextDouble() * viewport.Width, (float)rand.NextDouble() * viewport.Height / 20));
+                    position = (new Vector2((float)rand.NextDouble() * viewport.Width, ((float)rand.NextDouble() * viewport.Height / 8) - 100));
                     bounds.Center = position + new Vector2(20, 20);
                 }
             }
