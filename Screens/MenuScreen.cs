@@ -33,10 +33,10 @@ namespace AsteroidBlaster.Screens
 
             _menuUp = new InputAction(
                 new[] { Buttons.DPadUp, Buttons.LeftThumbstickUp },
-                new[] { Keys.Up }, true);
+                new[] { Keys.Up, Keys.W }, true);
             _menuDown = new InputAction(
                 new[] { Buttons.DPadDown, Buttons.LeftThumbstickDown },
-                new[] { Keys.Down }, true);
+                new[] { Keys.Down, Keys.S }, true);
             _menuSelect = new InputAction(
                 new[] { Buttons.A, Buttons.Start },
                 new[] { Keys.Enter, Keys.Space }, true);
@@ -163,7 +163,7 @@ namespace AsteroidBlaster.Screens
             // Draw the menu title centered on the screen
             var titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
             var titleOrigin = font.MeasureString(_menuTitle) / 2;
-            var titleColor = new Color(192, 192, 192) * TransitionAlpha;
+            var titleColor = Color.DarkCyan * TransitionAlpha;
             const float titleScale = 1.25f;
 
             titlePosition.Y -= transitionOffset * 100;

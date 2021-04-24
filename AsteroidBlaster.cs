@@ -169,7 +169,7 @@ namespace AsteroidBlaster
                     asteroid.Draw(gameTime, spriteBatch);
                 }
 
-                ship.Draw(gameTime, spriteBatch);
+                ship.Draw(gameTime);
                 spriteBatch.DrawString(spriteFont, $"Lives left: {livesLeft}", new Vector2(2, 2), Color.Teal);
                 spriteBatch.DrawString(spriteFont, $"Time Survived: {gameTime.TotalGameTime.TotalSeconds.ToString("0s")}", new Vector2(500, 2), Color.Teal);
 

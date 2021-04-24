@@ -21,7 +21,7 @@ namespace AsteroidBlaster
     /// <summary>
     /// A class representing a ship
     /// </summary>
-    public class ShipSprite
+    public class ShipSprite : EngineParticleHelper
     {
         const short SHIP_SPEED = 500;
         const float SPEED_CAP = 300;
@@ -31,6 +31,8 @@ namespace AsteroidBlaster
         /// </summary>
         public Game game;
 
+        private SpriteBatch spriteBatch;
+
         private GamePadState gamePadState;
 
         private KeyboardState priorKeyboardState;
@@ -39,8 +41,10 @@ namespace AsteroidBlaster
         private Texture2D texture;
         //private Texture2D hitboxDebug;
 
-        private Vector2 position;
-        private Vector2 velocity;
+        private Vector2 shipPosition;
+        private Vector2 shipVelocity;
+
+        private float accelerationRatio = 2.0f;
 
         private BoundingRectangle bounds = new BoundingRectangle(new Vector2(400 - 41, 440 - 20), 82, 40);
         private BoundingRectangle rotatedBounds = new BoundingRectangle(new Vector2(400 - 20, 440 - 41), 40, 82);
@@ -51,6 +55,28 @@ namespace AsteroidBlaster
 
         private SoundEffect laserShooting;
         private SoundEffect laserCharge;
+
+
+        /// <summary>
+        /// A value that is true if the player is currently moving the ship (engines are on)
+        /// </summary>
+        public bool EnginesActive { get; set; }
+        /// <summary>
+        /// The direction that the thrusters are currently facing
+        /// </summary>
+        public Vector2 ThrusterDirection { get; set; }
+        /// <summary>
+        /// The velocity of the thrusters
+        /// </summary>
+        public Vector2 ThrusterVelocity { get; set; }
+        /// <summary>
+        /// The position of the left engine
+        /// </summary>
+        public Vector2 LeftEnginePosition { get; set; }
+        /// <summary>
+        /// The position of the right engine
+        /// </summary>
+        public Vector2 RightEnginePosition { get; set; }
 
         /// <summary>
         /// The current charge time of the laser
@@ -73,11 +99,6 @@ namespace AsteroidBlaster
         public bool LaserFired { get; set; } = false;
 
         /// <summary>
-        /// If the user has selected to restart the game
-        /// </summary>
-        public bool Restart = false;
-
-        /// <summary>
         /// The direction the ship is facing
         /// </summary>
         public Direction Direction;
@@ -90,10 +111,10 @@ namespace AsteroidBlaster
         /// <summary>
         /// The position of the ship sprite
         /// </summary>
-        public Vector2 Position {
+        public Vector2 ShipPosition {
             get
             {
-                return position;
+                return shipPosition;
             }
         }
 
@@ -121,8 +142,14 @@ namespace AsteroidBlaster
         public ShipSprite(Game game)
         {
             this.game = game;
-            this.position = new Vector2(400, 440);
+            this.spriteBatch = new SpriteBatch(this.game.GraphicsDevice);
+            this.shipPosition = new Vector2(400, 440);
             this.Direction = Direction.Up;
+
+            this.ThrusterDirection = new Vector2(0, 1);// starts facing down
+            this.ThrusterVelocity = new Vector2(100, 100);
+            this.LeftEnginePosition = shipPosition - new Vector2(-15, 14);
+            this.RightEnginePosition = shipPosition - new Vector2(15, 14);
         }
 
         /// <summary>
@@ -166,7 +193,6 @@ namespace AsteroidBlaster
             #endregion
 
             #region Keyboard Input
-            // Apply keyboard movement
 
             if (Destroyed == false)
             {
@@ -175,63 +201,88 @@ namespace AsteroidBlaster
                     acceleration += -Vector2.UnitY * (SHIP_SPEED * windowRatio);
                     rotated = false;
                     Direction = Direction.Up;
+                    EnginesActive = true;
                 }
                 if (currentKeyboardState.IsKeyDown(Keys.Down) || currentKeyboardState.IsKeyDown(Keys.S))
                 {
                     acceleration += Vector2.UnitY * (SHIP_SPEED * windowRatio);
                     rotated = false;
                     Direction = Direction.Down;
+                    EnginesActive = true;
                 }
                 if (currentKeyboardState.IsKeyDown(Keys.Left) || currentKeyboardState.IsKeyDown(Keys.A))
                 {
                     acceleration += -Vector2.UnitX * SHIP_SPEED;
                     rotated = true;
                     Direction = Direction.Left;
+                    EnginesActive = true;
                 }
                 if (currentKeyboardState.IsKeyDown(Keys.Right) || currentKeyboardState.IsKeyDown(Keys.D))
                 {
                     acceleration += Vector2.UnitX * SHIP_SPEED;
                     rotated = true;
                     Direction = Direction.Right;
+                    EnginesActive = true;
                 }
 
                 // update position of the ship
-                velocity += acceleration * t;
+                shipVelocity += acceleration * accelerationRatio * t;
 
                 #region Speed Capping
-                if (velocity.X > SPEED_CAP)
+                if (shipVelocity.X > SPEED_CAP)
                 {
-                    velocity.X = SPEED_CAP;
+                    shipVelocity.X = SPEED_CAP;
                 }
-                else if (velocity.X < -SPEED_CAP)
+                else if (shipVelocity.X < -SPEED_CAP)
                 {
-                    velocity.X = -SPEED_CAP;
+                    shipVelocity.X = -SPEED_CAP;
                 }
-                if (velocity.Y > (SPEED_CAP * windowRatio))
+                if (shipVelocity.Y > (SPEED_CAP * windowRatio))
                 {
-                    velocity.Y = (SPEED_CAP * windowRatio);
+                    shipVelocity.Y = (SPEED_CAP * windowRatio);
                 }
-                else if (velocity.Y < -(SPEED_CAP * windowRatio))
+                else if (shipVelocity.Y < -(SPEED_CAP * windowRatio))
                 {
-                    velocity.Y = -(SPEED_CAP * windowRatio);
+                    shipVelocity.Y = -(SPEED_CAP * windowRatio);
                 }
                 #endregion
 
-                position += velocity * t;
-
-                // keep the ship within the game window
-                if (position.X > viewport.Width - 20) position.X = viewport.Width - 20;
-                else if (position.X < 20) position.X = 20;
-                if (position.Y > viewport.Height - 20) position.Y = viewport.Height - 20;
-                else if (position.Y < 20) position.Y = 20;
-            }
-            else
-            {
-                if (currentKeyboardState.IsKeyDown(Keys.R) &&
-                    priorKeyboardState.IsKeyUp(Keys.R))
+                #region Update Ship Direction
+                //ship is moving either up or down
+                if (Math.Abs(shipVelocity.Y) > Math.Abs(shipVelocity.X))
                 {
-                    Restart = true;
+                    if(shipVelocity.Y < 0)
+                    {
+                        Direction = Direction.Up;
+                    }
+                    else
+                    {
+                        Direction = Direction.Down;
+                    }
                 }
+                //ship is moving either left or right
+                else if (Math.Abs(shipVelocity.X) > Math.Abs(shipVelocity.Y))
+                {
+                    if (shipVelocity.X < 0)
+                    {
+                        Direction = Direction.Left;
+                    }
+                    else
+                    {
+                        Direction = Direction.Right;
+                    }
+                }
+                #endregion
+
+                shipPosition += shipVelocity * t;
+
+                #region Game Bounds
+                // keep the ship within the game window
+                if (shipPosition.X > viewport.Width - 20) shipPosition.X = viewport.Width - 20;
+                else if (shipPosition.X < 20) shipPosition.X = 20;
+                if (shipPosition.Y > viewport.Height - 20) shipPosition.Y = viewport.Height - 20;
+                else if (shipPosition.Y < 20) shipPosition.Y = 20;
+                #endregion
             }
             
             #endregion
@@ -269,10 +320,10 @@ namespace AsteroidBlaster
 
             #region Update bounds
 
-            bounds.X = position.X - 41;
-            bounds.Y = position.Y - 20;
-            rotatedBounds.X = position.X - 20;
-            rotatedBounds.Y = position.Y - 41;
+            bounds.X = shipPosition.X - 41;
+            bounds.Y = shipPosition.Y - 20;
+            rotatedBounds.X = shipPosition.X - 20;
+            rotatedBounds.Y = shipPosition.Y - 41;
 
             #endregion
 
@@ -289,6 +340,45 @@ namespace AsteroidBlaster
 
             #endregion
 
+            #region Engine Particles
+
+            // Update the thruster direction and positions using the new ship rotation
+            switch (Direction)
+            {
+                case Direction.Up:
+                    ThrusterDirection = new Vector2(0, 1);
+                    LeftEnginePosition = shipPosition - new Vector2(15, -14);
+                    RightEnginePosition = shipPosition - new Vector2(-15, -14);
+                    ThrusterVelocity = (new Vector2(100, shipVelocity.Y + 100) * ThrusterDirection) * (1 / windowRatio);
+                    break;
+                case Direction.Down:
+                    ThrusterDirection = new Vector2(0, -1);
+                    LeftEnginePosition = shipPosition - new Vector2(-15, 14);
+                    RightEnginePosition = shipPosition - new Vector2(15, 14);
+                    ThrusterVelocity = (new Vector2(100, shipVelocity.Y - 100) * ThrusterDirection) * (1 / windowRatio);;
+                    break;
+                case Direction.Left:
+                    ThrusterDirection = new Vector2(1, 0);
+                    LeftEnginePosition = shipPosition - new Vector2(-14, -15);
+                    RightEnginePosition = shipPosition - new Vector2(-14, 15);
+                    ThrusterVelocity = (new Vector2(shipVelocity.X + 100, 100) * ThrusterDirection);
+                    break;
+                case Direction.Right:
+                    ThrusterDirection = new Vector2(-1, 0);
+                    LeftEnginePosition = shipPosition - new Vector2(14, 15);
+                    RightEnginePosition = shipPosition - new Vector2(14, -15);
+                    ThrusterVelocity = (new Vector2(shipVelocity.X - 100, 100) * ThrusterDirection);
+                    break;
+
+            }
+
+            // Change Thrust Direction
+            ThrusterVelocity = (new Vector2(100,100) * ThrusterDirection);
+
+            // Reset the engine state
+            EnginesActive = false;
+
+            #endregion
         }
 
         /// <summary>
@@ -296,33 +386,38 @@ namespace AsteroidBlaster
         /// </summary>
         /// <param name="gameTime">The game time</param>
         /// <param name="spriteBatch">The spritebatch to render with</param>
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
             // flip effect uneccessary with current movement mechanics because of ship symmetry
             SpriteEffects spriteEffects = SpriteEffects.None; //(flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             var source = new Rectangle(36, animationFrame * 80, 164, 80);// sprite is 164x80 pixels at 1f scale
 
+            spriteBatch.Begin();
+
+            #region Debug
             /*
             var debug = new Rectangle(36, animationFrame * 80, 164, 80);
             spriteBatch.Draw(hitboxDebug, position + new Vector2(19, 0), debug, Color, 0f, new Vector2(120, 40), 0.5f, spriteEffects, 0);
             */
+            #endregion
 
             switch (Direction)
             {
                 case Direction.Up:
-                    spriteBatch.Draw(texture, position, source, Color, (float)Math.PI * 0f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
+                    spriteBatch.Draw(texture, shipPosition, source, Color, (float)Math.PI * 0f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
                     break;
                 case Direction.Down:
-                    spriteBatch.Draw(texture, position, source, Color, (float)Math.PI * 1f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
+                    spriteBatch.Draw(texture, shipPosition, source, Color, (float)Math.PI * 1f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
                     break;
                 case Direction.Left:
-                    spriteBatch.Draw(texture, position, source, Color, (float)Math.PI * 1.5f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
+                    spriteBatch.Draw(texture, shipPosition, source, Color, (float)Math.PI * 1.5f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
                     break;
                 case Direction.Right:
-                    spriteBatch.Draw(texture, position, source, Color, (float)Math.PI * 0.5f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
+                    spriteBatch.Draw(texture, shipPosition, source, Color, (float)Math.PI * 0.5f, new Vector2(82, 40), 0.5f, spriteEffects, 0);
                     break;
             }
 
+            spriteBatch.End();
         }
     }
 }

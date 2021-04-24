@@ -67,7 +67,7 @@ namespace AsteroidBlaster
         {
             this.game = game;
             this.ship = ship;
-            this.position = ship.Position + new Vector2(0, -10);
+            this.position = ship.ShipPosition + new Vector2(0, -10);
             this.fired = ship.LaserFired;
             this.shipDestroyed = ship.Destroyed;
             this.bounds = new BoundingRectangle(position, 39, 10);
@@ -160,16 +160,16 @@ namespace AsteroidBlaster
                     switch (direction)
                     {
                         case Direction.Up:
-                            position = ship.Position + new Vector2(0, -10 - (animationFrame / 2));
+                            position = ship.ShipPosition + new Vector2(0, -10 - (animationFrame / 2));
                             break;
                         case Direction.Down:
-                            position = ship.Position + new Vector2(0, 10 + (animationFrame / 2));
+                            position = ship.ShipPosition + new Vector2(0, 10 + (animationFrame / 2));
                             break;
                         case Direction.Left:
-                            position = ship.Position + new Vector2(-10 - (animationFrame / 2), 0);
+                            position = ship.ShipPosition + new Vector2(-10 - (animationFrame / 2), 0);
                             break;
                         case Direction.Right:
-                            position = ship.Position + new Vector2(10 + (animationFrame / 2), 0);
+                            position = ship.ShipPosition + new Vector2(10 + (animationFrame / 2), 0);
                             break;
                     }
                 }

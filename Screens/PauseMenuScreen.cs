@@ -6,8 +6,12 @@ namespace AsteroidBlaster.Screens
     // giving the player options to resume or quit.
     public class PauseMenuScreen : MenuScreen
     {
-        public PauseMenuScreen() : base("Paused")
+        private GameplayScreen gameplayScreen;
+
+        public PauseMenuScreen(GameplayScreen gameplay) : base("Paused")
         {
+            gameplayScreen = gameplay;
+
             var resumeGameMenuEntry = new MenuEntry("Resume Game");
             var restartGameMenuEntry = new MenuEntry("Restart Game");
             var quitGameMenuEntry = new MenuEntry("Quit Game");
@@ -34,6 +38,8 @@ namespace AsteroidBlaster.Screens
         // This uses the loading screen to transition from the game back to the main menu screen.
         private void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
+            ScreenManager.Game.Components.Remove(gameplayScreen.LeftEngineParticles);
+            ScreenManager.Game.Components.Remove(gameplayScreen.RightEngineParticles);
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());
         }
 

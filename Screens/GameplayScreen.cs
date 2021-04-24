@@ -13,7 +13,7 @@ namespace AsteroidBlaster.Screens
     // This screen implements the actual game logic. It is just a
     // placeholder to get the idea across: you'll probably want to
     // put some more interesting gameplay in here!
-    public class GameplayScreen : GameScreen, IParticleEmitter
+    public class GameplayScreen : GameScreen, IParticleEmitter, EngineParticleHelper
     {
         private ContentManager _content;
         private SpriteBatch spriteBatch;
@@ -24,6 +24,9 @@ namespace AsteroidBlaster.Screens
         private ExplosionParticleSystem _shipExplosion;
         private FireworkParticleSystem _asteroidDestruction;
         private TrailingParticleSystem _shipTrail;
+
+        public EngineParticleSystem LeftEngineParticles { get; set; }
+        public EngineParticleSystem RightEngineParticles { get; set; }
 
         private AsteroidSprite[] asteroids;
         private ShipSprite ship;
@@ -43,6 +46,37 @@ namespace AsteroidBlaster.Screens
 
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
+
+
+
+        /// <summary>
+        /// A value that is true if the player is currently moving the ship (engines are on)
+        /// </summary>
+        public bool EnginesActive { get; set; }
+        /// <summary>
+        /// The direction that the thrusters are currently facing
+        /// </summary>
+        public Vector2 ThrusterDirection { get; set; }
+        /// <summary>
+        /// The velocity of the thrusters
+        /// </summary>
+        public Vector2 ThrusterVelocity { get; set; }
+        /// <summary>
+        /// The position of the left engine
+        /// </summary>
+        public Vector2 LeftEnginePosition { get; set; }
+        /// <summary>
+        /// The position of the right engine
+        /// </summary>
+        public Vector2 RightEnginePosition { get; set; }
+
+        public float TimeSurvived
+        {
+            get
+            {
+                return timeSurvived;
+            }
+        }
 
         public GameplayScreen()
         {
@@ -80,6 +114,14 @@ namespace AsteroidBlaster.Screens
             ship = new ShipSprite(ScreenManager.Game);
             laser = new LaserSprite(ScreenManager.Game, ship);
 
+
+            EnginesActive = ship.EnginesActive;
+            ThrusterDirection = ship.ThrusterDirection;
+            ThrusterVelocity = ship.ThrusterVelocity;
+            LeftEnginePosition = ship.LeftEnginePosition;
+            RightEnginePosition = ship.RightEnginePosition;
+
+
             spriteBatch = new SpriteBatch(ScreenManager.GraphicsDevice);
 
             if (_content == null)
@@ -111,7 +153,13 @@ namespace AsteroidBlaster.Screens
             ScreenManager.Game.Components.Add(_asteroidDestruction);
 
             _shipTrail = new TrailingParticleSystem(ScreenManager.Game, this);
-            ScreenManager.Game.Components.Add(_shipTrail);
+            //ScreenManager.Game.Components.Add(_shipTrail);
+
+            LeftEngineParticles = new EngineParticleSystem(ScreenManager.Game, this);
+            ScreenManager.Game.Components.Add(LeftEngineParticles);
+            
+            RightEngineParticles = new EngineParticleSystem(ScreenManager.Game, this);            
+            ScreenManager.Game.Components.Add(RightEngineParticles);
 
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
@@ -151,6 +199,12 @@ namespace AsteroidBlaster.Screens
                     laser.Update(gameTime);
                     timeSurvived += (float) gameTime.ElapsedGameTime.TotalSeconds;
 
+                    EnginesActive = ship.EnginesActive;
+                    ThrusterDirection = ship.ThrusterDirection;
+                    ThrusterVelocity = ship.ThrusterVelocity;
+                    LeftEnginePosition = ship.LeftEnginePosition;
+                    RightEnginePosition = ship.RightEnginePosition;
+
                     // Detect and process collisions
                     ship.Color = Color.White;
                     foreach (var asteroid in asteroids)
@@ -167,15 +221,17 @@ namespace AsteroidBlaster.Screens
                             if (livesLeft == 0)
                             {
                                 shipDestruction.Play();
-                                _shipExplosion.PlaceExplosion(ship.Position);
+                                _shipExplosion.PlaceExplosion(ship.ShipPosition);
                                 ship.Color = Color.White;
                                 ship.Destroyed = true;
                                 ship.Update(gameTime);
 
-                                if (ship.Destroyed == true) ScreenManager.AddScreen(new GameOverMenuScreen(), ControllingPlayer);
+                                if (ship.Destroyed == true) ScreenManager.AddScreen(new GameOverMenuScreen(this), ControllingPlayer);
 
 
-                                ScreenManager.Game.Components.Remove(_shipTrail);
+                                //ScreenManager.Game.Components.Remove(_shipTrail);
+                                ScreenManager.Game.Components.Remove(LeftEngineParticles);
+                                ScreenManager.Game.Components.Remove(RightEngineParticles);
                             }
                             else
                             {
@@ -192,8 +248,8 @@ namespace AsteroidBlaster.Screens
                         }
                     }
 
-                    Velocity = ship.Position - Position;
-                    Position = ship.Position;
+                    Velocity = ship.ShipPosition - Position;
+                    Position = ship.ShipPosition;
                 }
                 #endregion
 
@@ -224,11 +280,7 @@ namespace AsteroidBlaster.Screens
             PlayerIndex player;
             if (_pauseAction.Occurred(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-            }
-            else
-            {
-                
+                ScreenManager.AddScreen(new PauseMenuScreen(this), ControllingPlayer);
             }
         }
 
@@ -240,8 +292,8 @@ namespace AsteroidBlaster.Screens
 
 
             // Calculate Offset Vector for Background
-            float playerX = ship.Position.X;//MathHelper.Clamp(ship.Position.X, 300, 2560);
-            float playerY = ship.Position.Y;//MathHelper.Clamp(ship.Position.Y, 300, 1440);
+            float playerX = ship.ShipPosition.X;//MathHelper.Clamp(ship.Position.X, 300, 2560);
+            float playerY = ship.ShipPosition.Y;//MathHelper.Clamp(ship.Position.Y, 300, 1440);
 
             float offsetX = (-800 - playerX);
             float offsetY = (-300 - playerY);
@@ -260,7 +312,7 @@ namespace AsteroidBlaster.Screens
                 asteroid.Draw(gameTime, spriteBatch);
             }
 
-            ship.Draw(gameTime, spriteBatch);
+            ship.Draw(gameTime);
             spriteBatch.DrawString(spriteFont, $"Lives left: {livesLeft}", new Vector2(2, 2), Color.Teal);
             spriteBatch.DrawString(spriteFont, $"Time Survived: {timeSurvived.ToString("0s")}", new Vector2(500, 2), Color.Teal);
 

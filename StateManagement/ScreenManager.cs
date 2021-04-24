@@ -21,6 +21,11 @@ namespace AsteroidBlaster.StateManagement
         private bool _isInitialized;
 
         /// <summary>
+        /// Keeps track of the player's current record time
+        /// </summary>
+        public float SurvivalRecord { get; set; } = 0;
+
+        /// <summary>
         /// A SpriteBatch shared by all GameScreens
         /// </summary>
         public SpriteBatch SpriteBatch { get; private set; }

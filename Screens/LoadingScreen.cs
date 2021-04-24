@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using AsteroidBlaster.StateManagement;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AsteroidBlaster.Screens
 {
@@ -89,19 +90,20 @@ namespace AsteroidBlaster.Screens
                 var spriteBatch = ScreenManager.SpriteBatch;
                 var font = ScreenManager.Font;
 
-                const string message = "Loading...";
+                const string message = "Objective: Survive";
 
                 // Center the text in the viewport.
                 var viewport = ScreenManager.GraphicsDevice.Viewport;
                 var viewportSize = new Vector2(viewport.Width, viewport.Height);
-                var textSize = font.MeasureString(message);
+                var textSize = (font.MeasureString(message) * 2);
                 var textPosition = (viewportSize - textSize) / 2;
 
-                var color = Color.White * TransitionAlpha;
+                var color = Color.DarkCyan * TransitionAlpha;
 
                 // Draw the text.
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, message, textPosition, color);
+                spriteBatch.DrawString(font, message, textPosition, color, 0, new Vector2(0,0), 2.0f, SpriteEffects.None, 0f);
+
                 spriteBatch.End();
             }
         }
